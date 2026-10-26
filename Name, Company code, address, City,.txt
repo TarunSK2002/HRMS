@@ -1,0 +1,185 @@
+Name, Company code, address, City, don't show empty field
+
+2.b.name, code, address, city, status, --> branch add querry
+
+
+3. if branch deleted need delete b related details in other pages
+
+
+
+allowance master
+deduction master
+grade slab
+
+
+
+
+
+
+
+
+ALTER TABLE hrmm_Course DROP CONSTRAINT fk_hrmm_Company;
+ALTER TABLE hrmm_Course
+ADD CONSTRAINT fk_hrmm_Company FOREIGN KEY (pn_CompanyID)
+REFERENCES paym_Company(pn_CompanyID) ON DELETE CASCADE;
+
+ALTER TABLE hrmm_SkillsMaster DROP CONSTRAINT fk_hrmm_SkillsMaster_Company;
+ALTER TABLE hrmm_SkillsMaster
+ADD CONSTRAINT fk_hrmm_SkillsMaster_Company FOREIGN KEY (pn_CompanyID)
+REFERENCES paym_Company(pn_CompanyID) ON DELETE CASCADE;
+
+ALTER TABLE hrmm_Specialization DROP CONSTRAINT fk_Specialization_Company;
+ALTER TABLE hrmm_Specialization
+ADD CONSTRAINT fk_Specialization_Company FOREIGN KEY (pn_CompanyID)
+REFERENCES paym_Company(pn_CompanyID) ON DELETE CASCADE;
+
+-- payroll master
+ALTER TABLE paym_Deduction DROP CONSTRAINT fk_Deduction_Company;
+ALTER TABLE paym_Deduction
+ADD CONSTRAINT fk_Deduction_Company FOREIGN KEY (pn_CompanyID)
+REFERENCES paym_Company(pn_CompanyID) ON DELETE CASCADE;
+
+ALTER TABLE paym_Department DROP CONSTRAINT fk_Department_Company;
+ALTER TABLE paym_Department
+ADD CONSTRAINT fk_Department_Company FOREIGN KEY (pn_CompanyID)
+REFERENCES paym_Company(pn_CompanyID) ON DELETE CASCADE;
+
+ALTER TABLE paym_Designation DROP CONSTRAINT fk_Designation_Company;
+ALTER TABLE paym_Designation
+ADD CONSTRAINT fk_Designation_Company FOREIGN KEY (pn_CompanyID)
+REFERENCES paym_Company(pn_CompanyID) ON DELETE CASCADE;
+
+ALTER TABLE paym_Division DROP CONSTRAINT fk_Division_Company;
+ALTER TABLE paym_Division
+ADD CONSTRAINT fk_Division_Company FOREIGN KEY (pn_CompanyID)
+REFERENCES paym_Company(pn_CompanyID) ON DELETE CASCADE;
+
+ALTER TABLE paym_Earnings DROP CONSTRAINT fk_Earnings_Company;
+ALTER TABLE paym_Earnings
+ADD CONSTRAINT fk_Earnings_Company FOREIGN KEY (pn_CompanyID)
+REFERENCES paym_Company(pn_CompanyID) ON DELETE CASCADE;
+
+ALTER TABLE paym_Grade DROP CONSTRAINT fk_Grade_Company;
+ALTER TABLE paym_Grade
+ADD CONSTRAINT fk_Grade_Company FOREIGN KEY (pn_CompanyID)
+REFERENCES paym_Company(pn_CompanyID) ON DELETE CASCADE;
+
+ALTER TABLE paym_JobStatus DROP CONSTRAINT fk_JobStatus_Company;
+ALTER TABLE paym_JobStatus
+ADD CONSTRAINT fk_JobStatus_Company FOREIGN KEY (pn_CompanyID)
+REFERENCES paym_Company(pn_CompanyID) ON DELETE CASCADE;
+
+ALTER TABLE paym_Level DROP CONSTRAINT fk_Level_Company;
+ALTER TABLE paym_Level
+ADD CONSTRAINT fk_Level_Company FOREIGN KEY (pn_CompanyID)
+REFERENCES paym_Company(pn_CompanyID) ON DELETE CASCADE;
+
+ALTER TABLE paym_Loan DROP CONSTRAINT fk_paym_loan;
+ALTER TABLE paym_Loan
+ADD CONSTRAINT fk_paym_loan FOREIGN KEY (pn_Companyid)
+REFERENCES paym_Company(pn_CompanyID) ON DELETE CASCADE;
+
+ALTER TABLE paym_OverHeadingCost DROP CONSTRAINT fk_OverHeading_Company;
+ALTER TABLE paym_OverHeadingCost
+ADD CONSTRAINT fk_OverHeading_Company FOREIGN KEY (pn_CompanyID)
+REFERENCES paym_Company(pn_CompanyID) ON DELETE CASCADE;
+
+ALTER TABLE paym_Shift DROP CONSTRAINT fk_Shift_Company;
+ALTER TABLE paym_Shift
+ADD CONSTRAINT fk_Shift_Company FOREIGN KEY (pn_CompanyID)
+REFERENCES paym_Company(pn_CompanyID) ON DELETE CASCADE;
+
+-- payroll outputs
+ALTER TABLE PayOutput_Deductions DROP CONSTRAINT fk_paym_PayOutput_Deductions;
+ALTER TABLE PayOutput_Deductions
+ADD CONSTRAINT fk_paym_PayOutput_Deductions FOREIGN KEY (pn_CompanyID)
+REFERENCES paym_Company(pn_CompanyID) ON DELETE CASCADE;
+
+ALTER TABLE PayOutput_ESI DROP CONSTRAINT fk_PayOutput_ESI;
+ALTER TABLE PayOutput_ESI
+ADD CONSTRAINT fk_PayOutput_ESI FOREIGN KEY (pn_CompanyID)
+REFERENCES paym_Company(pn_CompanyID) ON DELETE CASCADE;
+
+ALTER TABLE PayOutput_NetPay DROP CONSTRAINT fk_PayOutput_NetPay;
+ALTER TABLE PayOutput_NetPay
+ADD CONSTRAINT fk_PayOutput_NetPay FOREIGN KEY (pn_CompanyID)
+REFERENCES paym_Company(pn_CompanyID) ON DELETE CASCADE;
+
+ALTER TABLE PayOutput_PF DROP CONSTRAINT fk_PayOutput_PF;
+ALTER TABLE PayOutput_PF
+ADD CONSTRAINT fk_PayOutput_PF FOREIGN KEY (pn_CompanyID)
+REFERENCES paym_Company(pn_CompanyID) ON DELETE CASCADE;
+
+-- branch & category
+ALTER TABLE paym_Branch DROP CONSTRAINT fk_paym_Branch;
+ALTER TABLE paym_Branch
+ADD CONSTRAINT fk_paym_Branch FOREIGN KEY (pn_CompanyID)
+REFERENCES paym_Company(pn_CompanyID) ON DELETE CASCADE;
+
+ALTER TABLE paym_Category DROP CONSTRAINT fk_Category_Company;
+ALTER TABLE paym_Category
+ADD CONSTRAINT fk_Category_Company FOREIGN KEY (pn_CompanyID)
+REFERENCES paym_Company(pn_CompanyID) ON DELETE CASCADE;
+
+
+SELECT 
+    f.name AS ForeignKey,
+    OBJECT_NAME(f.parent_object_id) AS TableName,
+    COL_NAME(fc.parent_object_id, fc.parent_column_id) AS ColumnName
+FROM sys.foreign_keys AS f
+INNER JOIN sys.foreign_key_columns AS fc
+    ON f.object_id = fc.constraint_object_id
+WHERE f.referenced_object_id = OBJECT_ID('paym_Company');
+
+
+
+
+
+  ALTER TABLE [GomathiNEWhrms].[dbo].[paym_Loan]
+ADD [v_LoanType] VARCHAR(100) NULL;
+
+
+
+CREATE TABLE [dbo].[paym_LoanTypeMaster] (
+    [pn_LoanTypeID] INT IDENTITY(1,1) PRIMARY KEY,
+    [v_LoanTypeName] VARCHAR(100) NOT NULL,
+    [status] VARCHAR(20) DEFAULT 'Active',
+    [CreatedDate] DATETIME DEFAULT GETDATE(),
+    [ModifiedDate] DATETIME NULL
+);
+
+
+
+
+
+  ALTER TABLE [dbo].[CTCSlab]
+ADD [LoanID] INT NULL;
+
+
+  ALTER TABLE [CTCSlab]
+ALTER COLUMN LoanID NVARCHAR(50);
+
+
+
+
+
+
+
+
+
+
+
+ALTER TABLE [dbo].[paym_Employee] ALTER COLUMN role VARCHAR(100);
+ALTER TABLE [dbo].[paym_Employee] ALTER COLUMN Readerid VARCHAR(100);
+ALTER TABLE [dbo].[paym_Employee] ALTER COLUMN ReportingID VARCHAR(100);
+ALTER TABLE [dbo].[paym_Employee] ALTER COLUMN YearOfPassing VARCHAR(100);
+
+
+ALTER TABLE [dbo].[paym_Employee] ALTER COLUMN OT_Eligible VARCHAR(100);
+ALTER TABLE [dbo].[paym_Employee] ALTER COLUMN TDS_Applicable VARCHAR(100);
+
+ALTER TABLE [dbo].[paym_Employee]
+ALTER COLUMN [status] VARCHAR(10);  
+
+ALTER TABLE [dbo].[paym_Employee]
+ALTER COLUMN [salary_type] VARCHAR(50);

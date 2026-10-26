@@ -1,0 +1,96 @@
+Company Module
+1.Company Page
+	--UI Design 
+	--Page Condition
+	--remove get all company details in single company login
+ 
+2. Branch page
+	--UI Design
+	--created to view list of all branch
+	--added action buttons
+	--Some UI validations
+
+3.Division Master page
+	--UI Design
+	--Redesigned the List view
+	--added action buttons
+	--changed some code functionalities
+
+4.Department Master
+	--UI Design
+	--Redesigned the List view
+	--added action buttons
+	--changed some code functionalities
+
+5.Designation Master
+	--UI Design
+	--Redesigned the List view
+	--added action buttons
+	--changed some code functionalities
+
+6.Grade Master
+	--UI Design
+	--Redesigned the List view
+	--added action buttons
+	--changed some code functionalities
+
+7.Category Master
+	--UI Design
+	--Redesigned the List view
+	--added action buttons
+	--changed some code functionalities
+
+8.Job Status page
+	--UI Design
+	--Redesigned the List view
+	--added action buttons
+	--changed some code functionalities
+
+9.Level Master
+	--UI Design
+	--Redesigned the List view
+	--added action buttons
+	--changed some code functionalities
+
+10.Leave Master
+	--UI Design
+	--Redesigned the List view
+	--added action buttons
+	--changed some code functionalities
+
+11.Grade Slab page
+	--changed some code functionalities
+	--Added a button to view the list
+
+12.Loan Slab
+	--Redesigned the List view
+	--changed some code functionalities
+
+13.Loan Master
+	--Redesigned the List view
+	--Adding new loan type master button
+	--Adding loan type drop down
+	--changed some code functionalities
+
+14.Allowance Master
+15.Allowance Values
+16.Deduction Master
+17.PF Setting
+18.ESI Settings
+19.Allowance Setting
+	--changed some code functionalities
+
+20.Assets page
+	--Redesigned the List view
+	--changed some code functionalities
+
+Branch Module
+
+1.Employee Master
+	-- Changed some code functionalities
+	-- major spelling mistake which interrupt the code functionalities has been changed 
+
+
+
+Database
+	--Added various fields based on UI changes
